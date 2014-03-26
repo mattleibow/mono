@@ -1,23 +1,45 @@
-# ensure LF endings on all checkouts
-configure.in crlf=input
+# This file is understood by git 1.7.2 and higher. Everyone should
+# be on this version by now.
 
-# ensure native line endings on checkout
-*.c	crlf
-*.h	crlf
-*.cs	crlf
-*.sh	crlf
-*.il	crlf
+# sln, csproj files (and friends) are always CRLF, even on linux
+*.sln 					text	eol=crlf
+*.proj 					text	eol=crlf
 
-.gitattributes	crlf
-ChangeLog	crlf
-*akefile*	crlf
-*.sources	crlf
+# These are windows specific files which we may as well ensure are
+# always crlf on checkout
+*.bat 					text	eol=crlf
+*.cmd 					text	eol=crlf
 
-# don't do anything to line-endings.  Let CRLFs go into the repo, and CRLF on checkout
-*.bat	  	-crlf
-*.sln		-crlf
-*.*proj* 	-crlf
-*.xml 		-crlf
+# Opt in known filetypes to always normalize line endings on checkin
+# and always use native endings on checkout
+*.c 					text	eol=crlf
+*.config 				text	eol=crlf
+*.h 					text	eol=crlf
+*.cs 					text	eol=crlf
+*.csproj 				text	eol=crlf
+*.md 					text	eol=crlf
+*.tt 					text	eol=crlf
+*.txt 					text	eol=crlf
+*.vspackage 			text	eol=crlf
+*.vspackage.diagram 	text	eol=crlf
+
+# Some must always be checked out as lf so enforce that for those files
+# If these are not lf then bash/cygwin on windows will not be able to
+# excute the files
+*.sh 					text	eol=lf
+*.in 							eol=lf
+*.ac 							eol=lf
+*.mc 							eol=lf
+*.make 							eol=lf
+*.rpath							eol=lf
+.gitattributes					eol=crlf
+ChangeLog						eol=crlf
+*akefile*						eol=lf
+*.sources						eol=lf
+missing							eol=lf
+*.host							eol=lf
+scripts/*						eol=lf
+mkinstalldirs					eol=lf
 
 # CRLF Handling
 # -------------
