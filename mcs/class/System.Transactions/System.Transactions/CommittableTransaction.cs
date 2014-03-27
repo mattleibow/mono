@@ -15,9 +15,14 @@ using System.Threading;
 
 namespace System.Transactions
 {
+#if !PCL
 	[Serializable]
+#endif
 	public sealed class CommittableTransaction : Transaction,
-		ISerializable, IDisposable, System.IAsyncResult
+#if !PCL
+		ISerializable, 
+#endif
+        IDisposable, System.IAsyncResult
 	{
 		TransactionOptions options;
 
